@@ -226,6 +226,9 @@ h1, h2, h3, h4, h5, h6{
     gap: 1rem;
     margin-top: 1.5rem;
 }
+.mg3{
+    margin-top: 3rem;
+}
 .dblok{
     display: block;
     margin-bottom: 2rem;
@@ -247,9 +250,9 @@ h1, h2, h3, h4, h5, h6{
     color: var(--main-color);
 }
 .secondTitle{
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.3;
-    font-weight: 900;
+    font-weight: 600;
     color: #222;
     margin-bottom: 1rem;
 }
@@ -478,6 +481,9 @@ h1, h2, h3, h4, h5, h6{
     .dblok{
         margin-bottom: 2.5rem;
     }
+    .secondTitle{
+        font-size: 18px;
+    }
     .singlePost_thumbnail,
     .fastContent p img.size-full,
     .fastContent p a img.size-full,
@@ -485,5 +491,11 @@ h1, h2, h3, h4, h5, h6{
         width: calc(100% + 40px);
         margin-left: -20px;
         margin-right: 0 !important;
+    }
+    .fastContent p,
+    .fastContent ul,
+    .fastContent ol,
+    .fastContent blockquote{
+        font-size: 16px;
     }
 }

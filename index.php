@@ -52,7 +52,7 @@ if($indexQuery->have_posts()){ ?>
             }
         ?>
 
-        <div class="fg2">
+        <div class="fg2 mg3">
             <?php 
             $i = 0;
             while( $indexQuery->have_posts() ){
@@ -60,6 +60,10 @@ if($indexQuery->have_posts()){ ?>
                 $i ++; ?>
 
                 <article id="post-<?php the_ID() ?>" class="dblok">
+                    <a href="<?php echo the_permalink(); ?>" title="<?php echo the_title(); ?>" class="fastSmall">
+                        <?php echo fast_generate_thumbnail(get_the_ID(), 'medium', 'mediumThumbnmail', 'lazy'); ?>
+                    </a>
+
                     <div class="bodyBlock">
                         <div class="meta">
                             <?php fast_cat_link() ?>
@@ -70,9 +74,7 @@ if($indexQuery->have_posts()){ ?>
                             <?php the_title('<h2 class="secondTitle">', '</h2>') ?>
                         </a>
                     </div>
-                    <a href="<?php echo the_permalink(); ?>" title="<?php echo the_title(); ?>" class="fastSmall">
-                        <?php echo fast_generate_thumbnail(get_the_ID(), 'medium', 'mediumThumbnmail', 'lazy'); ?>
-                    </a>
+
                     <?php the_excerpt(); ?>
 
                     <div class="tagOutput">
