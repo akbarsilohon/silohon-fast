@@ -44,4 +44,5 @@ require_once FAST_DIR . '/inc/admin/dashboard.php';
 add_action( 'admin_init', 'fast_admin_inits' );
 function fast_admin_inits(){
     require_once FAST_DIR . '/inc/admin/handler/main.php';
+    require_once FAST_DIR . '/inc/admin/handler/article.php';
 }

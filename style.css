@@ -364,6 +364,12 @@ a{
 .dblok{
     display: block;
 }
+.mgb2{
+    margin-bottom: 2rem;
+}
+.just-center{
+    justify-content: center;
+}
 .ontop{
     font-family: 'Roboto Slab', serif;
 }
@@ -378,6 +384,162 @@ a{
 }
 .singleCat a{
     color: #fff;
+}
+.singleTitle{
+    font-size: 25px;
+    line-height: 1.4;
+    font-weight: 900;
+}
+.authorMeta{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+}
+.slsAuth_img{
+    width: 40px;
+    height: 40px;
+    object-position: center;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.bodyMeta{
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    font-weight: 500;
+}
+.singlePost_thumbnail{
+    width: 100%;
+    height: 350px;
+    object-position: center;
+    object-fit: cover;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.fastContent p,
+.fastContent ul,
+.fastContent ol{
+    font-size: 18px;
+    line-height: 2;
+    color: #444;
+}
+.fastContent p{
+    margin-bottom: 1.5rem;
+}
+.fastContent ul,
+.fastContent ol{
+    margin-left: 25px;
+}
+.fastContent p a img,
+.fastContent p img,
+.fastContent figure img{
+    width: 100%;
+    height: auto;
+    margin-right: 0;
+}
+.fastContent h1,
+.fastContent h2,
+.fastContent h3,
+.fastContent h4,
+.fastContent h5,
+.fastContent h6{
+    font-family: 'Roboto Slab', serif;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    font-weight: 900;
+}
+
+/* Komments */
+/* Style untuk daftar komentar */
+.comments_loop {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+/* Style untuk setiap komentar */
+.comment {
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Style untuk avatar */
+.comment .avatar {
+    float: left;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* Style untuk nama pengguna */
+.comment .author-name {
+    font-weight: bold;
+}
+
+/* Style untuk waktu komentar */
+.comment .comment-time {
+    color: #888;
+}
+
+/* Style untuk teks komentar */
+.comment .comment-text {
+    margin-top: 5px;
+}
+
+/* Style untuk formulir komentar */
+.comment-form {
+    margin-top: 20px;
+}
+
+/* Style untuk input teks */
+.comment-form input[type="text"],
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+/* Style untuk input email */
+.comment-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Style untuk input website */
+.comment-form input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+.comment-form-cookies-consent{
+    display: none;
+}
+.comment-content{
+    padding: 20px 0;
+}
+.comment-body{
+    margin-bottom: 1rem;
+}
+/* Style untuk tombol kirim */
+.comment-form input[type="submit"] {
+    background-color: var(--main-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+/* Style untuk pesan kesalahan */
+.comment-form .error-message {
+    color: red;
+    margin-top: 5px;
 }
 
 
@@ -447,5 +609,29 @@ a{
     .fastSmall .mediumThumbnmail{
         height: 230px;
         margin-bottom: 10px;
+    }
+    .singleTitle{
+        line-height: 1.2;
+        font-size: 23px;
+    }
+    .fastContent p,
+    .fastContent ul,
+    .fastContent ol{
+        font-size: 16px;
+        line-height: 2;
+        color: #444;
+    }
+    .singlePost_thumbnail,
+    .fastContent p a .size-full,
+    .fastContent p .size-full,
+    .fastContent figure .ads-img{
+        width: calc(100% + 40px);
+        height: auto;
+        margin-left: -20px;
+        margin-right: 0 !important;
+    }
+    .fastContent p a img,
+    .fastContent p img{
+        margin-bottom: -13px;
     }
 }

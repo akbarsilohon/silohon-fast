@@ -10,7 +10,10 @@
 add_settings_section( 'main-top', '<span class="fast-admin-section">Custom Logo</span>', null, 'fast-dash' );
 register_setting( 'fast-settings-group', 'fast_main' );
 
-// Logo
+/**
+ * Custom Logo ===========================
+ * =======================================
+ */
 add_settings_field( 'logo', 'Logo Blog', function(){
     $option = get_option('fast_main')['logo']; ?>
 
@@ -22,5 +25,16 @@ add_settings_field( 'logo', 'Logo Blog', function(){
         ?>
     </button>
 
+    <?php
+}, 'fast-dash', 'main-top' );
+
+
+/**
+ * Back to Top ==========================
+ * ======================================
+ */
+add_settings_field( 'scroll-top', 'Scroll to Top', function(){
+    $option = get_option('fast_main')['scroll_top']; ?>
+    <input type="checkbox" name="fast_main[scroll_top]" value="true" <?php if(!empty($option) && $option === 'true') echo 'checked'; ?>>
     <?php
 }, 'fast-dash', 'main-top' );

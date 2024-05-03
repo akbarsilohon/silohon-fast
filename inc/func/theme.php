@@ -206,5 +206,10 @@ add_filter( 'the_excerpt', function(){
 });
 
 add_filter( 'excerpt_length', function(){
-    return 15;
+    $length = get_option('fast_article');
+    if( !empty( $length['len'])){
+        return $length['len'];
+    } else{
+        return 15;
+    }
 });
