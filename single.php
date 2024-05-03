@@ -14,7 +14,7 @@ get_header(); ?>
     <div class="container fastPosts">
         <article id="post-<?php the_ID(); ?>" class="dblok" itemscope itemtype="https://schema.org/NewsArticle">
             <div class="ontop">
-                <div class="section_cat"><?php fast_cat_link(); ?></div>
+                <div class="singleCat"><?php fast_cat_link(); ?></div>
                 <?php the_title('<h2 class="singleTitle" itemprop="headline">', '</h2>'); ?>
 
                 <?php

@@ -32,3 +32,16 @@ require_once FAST_DIR . '/inc/func/theme.php';
 require_once FAST_DIR . '/inc/func/scripts.php';
 require_once FAST_DIR . '/inc/func/deregister.php';
 require_once FAST_DIR . '/inc/func/seo.php';
+
+
+
+/**
+ * Admin Core
+ * 
+ * @package silohon-fast
+ */
+require_once FAST_DIR . '/inc/admin/dashboard.php';
+add_action( 'admin_init', 'fast_admin_inits' );
+function fast_admin_inits(){
+    require_once FAST_DIR . '/inc/admin/handler/main.php';
+}

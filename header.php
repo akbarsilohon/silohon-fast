@@ -19,7 +19,8 @@
         <div class="header_inner">
             <a href="<?php echo home_url('/'); ?>" rel="home" title="<?php echo bloginfo( 'name' ); ?>" class="brand_url">
                 <?php
-                    $logo = FAST_URI . '/asset/img/logo.png';
+                    $default = FAST_URI . '/asset/img/logo.png';
+                    $logo = !empty(get_option('fast_main')['logo']) ? get_option('fast_main')['logo'] : $default;
                     echo '<img width="300" height="60" src="'. esc_url( $logo ) .'" alt="'. get_bloginfo( 'name' ).'"/>';
                 ?>
             </a>
