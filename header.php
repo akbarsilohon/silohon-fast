@@ -13,6 +13,13 @@
     <meta charset="<?php echo bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php wp_head(); ?>
+
+    <?php 
+        $htmls = get_option('fast_innseert')['header'];
+        if(!empty($htmls)){
+            echo $htmls;
+        }
+    ?>
 </head>
 <body <?php body_class(); ?> itemscope itemtype="https://schema.org/Blog">
     <header class="fast_header">

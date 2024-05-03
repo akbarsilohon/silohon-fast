@@ -47,18 +47,18 @@
     height: 100%;
     border: 1px solid #333;
 }
-.sls_form textarea{
+.fast_form textarea{
     width: 100%;
     max-width: 400px;
     box-sizing: border-box;
     padding: 10px;
 }
-.sls_form .slsSection{
+.fast_form .slsSection{
     margin-bottom: 1.5rem;
     color: #000;
     font-weight: 800;
 }
-.sls_form .multiInput{
+.fast_form .multiInput{
     margin-top: -5px;
 }
 button#remove-sameas{

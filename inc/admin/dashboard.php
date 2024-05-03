@@ -14,6 +14,9 @@ function fast_admin_menu(){
 
     // Article setting page
     add_submenu_page( 'fast-dash', 'Article Settings', 'Article Settings', 'manage_options', 'fast-article', 'fast_article' );
+
+    // Inser HTML header & footer
+    add_submenu_page( 'fast-dash', 'Insert HTML', 'Insert HTML', 'manage_options', 'html-footer', 'fast_insert' );
 }
 
 
@@ -46,4 +49,28 @@ function fast_article(){ ?>
     </form>
 </div>
     <?php
+}
+
+
+function fast_insert(){ ?>
+
+<div class="fast_container">
+
+    <?php settings_errors() ?>
+    
+    <form action="options.php" method="post" class="fast_form">
+        <?php settings_fields( 'fast-settings-insert' ); ?>
+        <?php do_settings_sections( 'html-footer' ); ?>
+        <?php submit_button('Save Change'); ?>
+    </form>
+</div>
+
+<?php
+}
+
+add_action( 'admin_init', 'fast_admin_inits' );
+function fast_admin_inits(){
+    require FAST_DIR . '/inc/admin/handler/main.php';
+    require FAST_DIR . '/inc/admin/handler/article.php';
+    require FAST_DIR . '/inc/admin/handler/insert.php';
 }
