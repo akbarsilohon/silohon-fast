@@ -41,3 +41,11 @@ require_once FAST_DIR . '/inc/func/seo.php';
  * @package silohon-fast
  */
 require_once FAST_DIR . '/inc/admin/dashboard.php';
+
+
+/**
+ * Shortcode function
+ * 
+ * @package silohon-fast
+ */
+require_once FAST_DIR . '/inc/code/core.php';
