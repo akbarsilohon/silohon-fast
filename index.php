@@ -59,6 +59,11 @@ if($indexQuery->have_posts()){ ?>
         ?>
 
         <div class="tblockStyle">
+
+            <div class="section_cat">
+                <span class="in_single_tag">New Article</span>
+            </div>
+
             <?php 
             $i = 0;
             while( $indexQuery->have_posts() ){

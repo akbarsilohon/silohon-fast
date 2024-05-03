@@ -49,14 +49,16 @@
             </svg>
         </div>
 
-        <div class="flexSearch" itemscope itemtype="https://schema.org/WebSite">
-            <meta itemprop="url" content="<?php echo home_url('/'); ?>"/>
-            <form action="<?php echo home_url('/'); ?>" method="get" class="formMobile" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
-                <meta itemprop="target" content="<?php echo home_url('/') . '?s={s}'; ?>"/>
-                <input class="searchInput" itemprop="query-input" type="text" name="s" placeholder="Search here.." required/>
-                <input type="submit" value="Search" class="btnsearchMobile" />
-            </form>
-        </div>
+        <?php if(! is_search()) : ?>
+            <div class="flexSearch" itemscope itemtype="https://schema.org/WebSite">
+                <meta itemprop="url" content="<?php echo home_url('/'); ?>"/>
+                <form action="<?php echo home_url('/'); ?>" method="get" class="formMobile" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
+                    <meta itemprop="target" content="<?php echo home_url('/') . '?s={s}'; ?>"/>
+                    <input class="searchInput" itemprop="query-input" type="text" name="s" placeholder="Search here.." required/>
+                    <input type="submit" value="Search" class="btnsearchMobile" />
+                </form>
+            </div>
+        <?php endif; ?>
 
         <?php 
             wp_nav_menu(

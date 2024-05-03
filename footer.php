@@ -28,6 +28,32 @@
     </div>
 </footer>
 
+<?php
+    $lazyload = get_option('fast_main')['lazyload'];
+    if(!empty($lazyload) && $lazyload === 'true'){ ?>
+
+        <script>
+            const images = document.querySelectorAll('[data-src]');
+            function preloadImage(e){
+                let t = e.getAttribute('data-src');
+                t && (e.src = t);
+            }
+            const imgOptions = {
+                threshold: 0,
+                rootMargin: '0px 0px -150px 0px'
+            }
+            imgObserver = new IntersectionObserver(((e,t) => {
+                e.forEach((e => {
+                    e.isIntersecting && (preloadImage(e.target), t.unobserve(e.target));
+                }));
+            }), imgOptions), images.forEach((e => {
+                imgObserver.observe(e)
+            }));
+        </script>
+
+        <?php
+    } ?>
+
 <?php wp_footer(); ?>
 
 </body>

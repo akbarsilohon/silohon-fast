@@ -30,6 +30,17 @@ add_settings_field( 'logo', 'Logo Blog', function(){
 
 
 /**
+ * Custom Lazy load IMG ======================
+ * ===========================================
+ */
+add_settings_field( 'lazyload', 'Lazy Load IMG', function(){
+    $option = get_option('fast_main')['lazyload']; ?>
+    <input type="checkbox" name="fast_main[lazyload]" value="true" <?php if(!empty($option) && $option === 'true') echo 'checked'; ?>>
+    <?php
+}, 'fast-dash', 'main-top' );
+
+
+/**
  * Back to Top ==========================
  * ======================================
  */

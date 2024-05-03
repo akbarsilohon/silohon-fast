@@ -83,7 +83,12 @@ function fast_generate_thumbnail( $id, $size, $class, $loading ){
         preg_match('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $getContent, $cover);
 
         if(!empty($cover[1])){
-            $thumbnail .= '<img width="350" height="300" src="'. $cover[1] .'" class="'. $class .'" alt="'.get_the_title($id).'" loading="'.$loading.'"/>';
+            $lazyload = get_option('fast_main')['lazyload'];
+            if(!empty($lazyload) && $lazyload === 'true'){
+                $thumbnail .= '<img width="350" height="300" src="'. FAST_URI . '/asset/img/lazy.jpg' .'" data-src="'. $cover[1] .'" class="'. $class .'" alt="'.get_the_title($id).'" loading="'.$loading.'"/>';
+            } else{
+                $thumbnail .= '<img width="350" height="300" src="'. $cover[1] .'" class="'. $class .'" alt="'.get_the_title($id).'" loading="'.$loading.'"/>';
+            }
         } else{
             $thumbnail .= '<div class="'.$class.'"></div>';
         }
@@ -213,3 +218,35 @@ add_filter( 'excerpt_length', function(){
         return 15;
     }
 });
+
+
+
+
+/**
+ * Custom Layload Img Silohon Fast Load
+ * 
+ * @package silohon-fast
+ */
+$lazy = get_option('fast_main')['lazyload'];
+if(!empty($lazy) && $lazy === 'true' && ! is_admin()){
+    add_filter( 'the_content', 'lazy_load_conten_img' );
+    add_filter( 'widget_text', 'lazy_load_conten_img' );
+
+    add_filter( 'wp_get_attachment_image_attributes', 'fast_img_attchment_attributes', 10, 2 );
+
+    function lazy_load_conten_img( $content ){
+        $content = preg_replace( '/(<img.+?)(src)(\s*=\s*["\']([^"\']*)["\'])/i', '$1data-$2$3', $content );
+        return $content;
+    }
+
+    function fast_img_attchment_attributes( $atts, $attachment ){
+        $atts[ 'data-src' ] = $atts[ 'src' ];
+        $atts[ 'src' ] = FAST_URI . '/asset/img/lazy.jpg';
+
+        if( isset( $atts[ 'srcset' ])){
+            unset( $atts[ 'srcset' ] );
+        }
+
+        return $atts;
+    }
+}
