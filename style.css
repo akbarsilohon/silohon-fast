@@ -8,11 +8,6 @@
 * Tags: Silohon, SEO, Fast, Blog
 * ========================================== */
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Slab:wght@100..900&display=swap');
-
-:root{
-    --main-color: #e5ac1b;
-}
-
 *, *::after, *::before{
     margin: 0;
     padding: 0;
@@ -423,8 +418,6 @@ a{
     font-size: 18px;
     line-height: 2;
     color: #444;
-}
-.fastContent p{
     margin-bottom: 1.5rem;
 }
 .fastContent ul,
@@ -448,6 +441,50 @@ a{
     margin-bottom: 1rem;
     line-height: 1.3;
     font-weight: 900;
+}
+
+/* Silohon Inline related Posts */
+.silohon-irp{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 150px;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    background-color: #222;
+    color: #fff;
+    border-left: 4px solid var(--main-color);
+    border-radius: 10px;
+}
+.silohon-irp .irp-relative{
+    position: relative;
+    padding-left: 15px;
+}
+.irp-relative .irp-button{
+    position: absolute;
+    top: -15px;
+    left: 15px;
+    background-color: var(--main-color);
+    padding: 5px 10px !important;
+    font-weight: 500;
+    font-size: 13px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    line-height: 1.3;
+}
+.irp-relative .irp-title{
+    font-family: 'Roboto Slab', serif;
+    font-size: 15px;
+    color: #f2f2f2;
+    font-weight: 600;
+    margin-top: 20px;
+    line-height: 1.3;
+}
+.silohon-irp .re-thumbnail{
+    width: 100%;
+    height: 90px;
+    object-position: center;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 /* Komments */
@@ -658,5 +695,26 @@ a{
     .fastContent p a img,
     .fastContent p img{
         margin-bottom: -13px;
+    }
+    .fastContent ul .silohon-irp,
+    .fastContent ol .silohon-irp{
+        width: calc(100% + 60px);
+        margin-left: -40px;
+    }
+    .silohon-irp{
+        width: calc(100% + 40px);
+        grid-template-columns: auto 90px;
+        gap: 12px;
+        align-items: center;
+        margin-left: -20px;
+    }
+    .silohon-irp .irp-relative{
+        padding-left: 10px;
+    }
+    .irp-relative .irp-button{
+        left: 10px;
+    }
+    .irp-relative .irp-title{
+        font-size: 14px;
     }
 }

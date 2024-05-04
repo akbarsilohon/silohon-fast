@@ -27,3 +27,22 @@ function fast_generate_img_meta_seo($id){
 
     echo $printImg;
 }
+
+
+
+/**
+ * Redirect 404 to homepage
+ * 
+ * @package silohon-fast
+ */
+$redirect = get_option('seo_one');
+if(!empty($redirect['redirect']) && $redirect['redirect'] === 'true' ){
+    add_action( 'template_redirect', 'fast_handler_404_redirect' );
+
+    function fast_handler_404_redirect(){
+        if(is_404() && $_SERVER['REQUEST_URI'] !== '/404'){
+            wp_redirect(home_url());
+            exit();
+        }
+    }
+}

@@ -32,6 +32,7 @@ require_once FAST_DIR . '/inc/func/theme.php';
 require_once FAST_DIR . '/inc/func/scripts.php';
 require_once FAST_DIR . '/inc/func/deregister.php';
 require_once FAST_DIR . '/inc/func/seo.php';
+require_once FAST_DIR . '/inc/func/related-posts.php';
 
 
 

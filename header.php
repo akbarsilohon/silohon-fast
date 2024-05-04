@@ -20,6 +20,13 @@
             echo $htmls;
         }
     ?>
+
+    <?php 
+    $color = get_option('color_option');
+    $main = !empty($color['main']) ? $color['main'] : '#e5ac1b';
+
+    echo '<style>:root{--main-color: '. $main .';}</style>';
+    ?>
 </head>
 <body <?php body_class(); ?> itemscope itemtype="https://schema.org/Blog">
     <header class="fast_header">

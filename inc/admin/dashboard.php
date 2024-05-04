@@ -17,6 +17,15 @@ function fast_admin_menu(){
 
     // Inser HTML header & footer
     add_submenu_page( 'fast-dash', 'Insert HTML', 'Insert HTML', 'manage_options', 'html-footer', 'fast_insert' );
+
+    // SEO Panel
+    add_submenu_page( 'fast-dash', 'SEO & Schema', 'SEO & Schema', 'manage_options', 'fast-seo', 'fast_seo', );
+
+    // Custom Color
+    add_submenu_page( 'fast-dash', 'Color', 'Color', 'manage_options', 'fast-color', 'fast_color' );
+
+    // Inline related posts
+    add_submenu_page( 'fast-dash', 'Inline Related Posts', 'Inline Related Posts', 'manage_options', 'fast-re', 'fast_re' );
 }
 
 
@@ -53,9 +62,7 @@ function fast_article(){ ?>
 
 
 function fast_insert(){ ?>
-
 <div class="fast_container">
-
     <?php settings_errors() ?>
     
     <form action="options.php" method="post" class="fast_form">
@@ -68,9 +75,63 @@ function fast_insert(){ ?>
 <?php
 }
 
+
+function fast_seo(){ ?>
+
+<div class="fast_container">
+
+    <h1 class="fastHeading">Schema end Redirect</h1>
+
+    <?php settings_errors() ?>
+    
+    <form action="options.php" method="post" class="fast_form">
+        <?php settings_fields( 'fast-settings-seo' ); ?>
+        <?php do_settings_sections( 'fast-seo' ); ?>
+        <?php submit_button('Save Change'); ?>
+    </form>
+</div>
+
+<?php
+}
+
+
+function fast_color(){ ?>
+<div class="fast_container">
+
+    <h1 class="fastHeading">Cusom Color</h1>
+
+    <?php settings_errors() ?>
+
+    <form action="options.php" method="post" class="fast_form">
+        <?php settings_fields( 'fast-settings-color' ); ?>
+        <?php do_settings_sections( 'fast-color' ); ?>
+        <?php submit_button('Save Change'); ?>
+    </form>
+</div>
+<?php
+}
+
+function fast_re(){ ?>
+<div class="fast_container">
+    <h1 class="fastHeading">Inline Related Posts</h1>
+    <?php settings_errors() ?>
+
+    <form action="options.php" method="post" class="fast_form">
+        <?php settings_fields( 'fast-settings-irp' ); ?>
+        <?php do_settings_sections( 'fast-re' ); ?>
+        <?php submit_button('Save Change'); ?>
+    </form>
+</div>
+<?php
+}
+
+
 add_action( 'admin_init', 'fast_admin_inits' );
 function fast_admin_inits(){
     require FAST_DIR . '/inc/admin/handler/main.php';
     require FAST_DIR . '/inc/admin/handler/article.php';
     require FAST_DIR . '/inc/admin/handler/insert.php';
+    require FAST_DIR . '/inc/admin/handler/seo.php';
+    require FAST_DIR . '/inc/admin/handler/color.php';
+    require FAST_DIR . '/inc/admin/handler/irp.php';
 }
