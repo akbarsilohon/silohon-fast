@@ -21,7 +21,7 @@ register_setting( 'fast-settings-insert', 'fast_innseert' );
 add_settings_field( 'fdheader', 'HTML Header', function(){
     $htmls = get_option('fast_innseert')['header']; ?>
 
-<textarea name="fast_innseert[header]" cols="30" rows="10"><?php echo $htmls; ?></textarea>
+<textarea name="fast_innseert[header]" rows="5"><?php echo $htmls; ?></textarea>
 
     <?php
 }, 'html-footer', 'ihf-sec' );
@@ -36,7 +36,7 @@ add_settings_field( 'fdheader', 'HTML Header', function(){
 add_settings_field( 'fdfooter', 'HTML Footer', function(){
     $footer = get_option('fast_innseert')['footer']; ?>
 
-<textarea name="fast_innseert[footer]" cols="30" rows="10"><?php echo $footer; ?></textarea>
+<textarea name="fast_innseert[footer]" rows="5"><?php echo $footer; ?></textarea>
 
     <?php
 }, 'html-footer', 'ihf-sec' );

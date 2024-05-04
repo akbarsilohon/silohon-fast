@@ -46,3 +46,44 @@ if(!empty($redirect['redirect']) && $redirect['redirect'] === 'true' ){
         }
     }
 }
+
+
+
+/**
+ * Render data organization schema
+ * 
+ * @package silohon-fast
+ */
+function fast_render_organization_schema(){
+    $organization = get_option('seo_two');
+
+    if(empty($organization['organization'])){
+        return;
+    }
+    
+    $outputJSON = '<script type="application/ld+json">{';
+    $outputJSON .= '"@context": "https://schema.org",';
+    $outputJSON .= '"@type": "Organization",';
+    $outputJSON .= '"image": "'. $organization['image'] .'",';
+    $outputJSON .= '"url": "'. $organization['url'] .'",';
+    $outputJSON .= '"sameAs": "'. $organization['sameAs'] .'",';
+    $outputJSON .= '"logo": "'. $organization['logo'] .'",';
+    $outputJSON .= '"name": "'. $organization['name'] .'",';
+    $outputJSON .= '"description": "'. $organization['description'] .'",';
+    $outputJSON .= '"email": "'. $organization['email'] .'",';
+    $outputJSON .= '"telephone": "'. $organization['telephone'] .'",';
+    $outputJSON .= '"address": {';
+    $outputJSON .= '"@type": "PostalAddress",';
+    $outputJSON .= '"streetAddress": "'. $organization['streetAddress'] .'",';
+    $outputJSON .= '"addressLocality": "'. $organization['addressLocality'] .'",';
+    $outputJSON .= '"addressCountry": "'. $organization['addressCountry'] .'",';
+    $outputJSON .= '"addressRegion": "'. $organization['addressRegion'] .'",';
+    $outputJSON .= '"postalCode": "'. $organization['postalCode'] .'"';
+    $outputJSON .= '},';
+    $outputJSON .= '"vatID": "'. $organization['vatID'] .'",';
+    $outputJSON .= '"iso6523Code": "'. $organization['iso6523Code'] .'"';
+    $outputJSON .= '}</script>';
+
+    echo $outputJSON;
+}
+add_action('wp_head', 'fast_render_organization_schema');

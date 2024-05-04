@@ -1,6 +1,6 @@
 /* =========================================
 * Theme Name: SILOHON FAST
-* Version: 1.2.3
+* Version: 1.5.3
 * Theme URI: https://github.com/akbarsilohon/silohon-fast.git
 * Author: Nur Akbar
 * Author URI: https://github.com/akbarsilohon
@@ -698,15 +698,13 @@ a{
     }
     .fastContent ul .silohon-irp,
     .fastContent ol .silohon-irp{
-        width: calc(100% + 60px);
-        margin-left: -40px;
+        width: calc(100% + 25px);
+        margin-left: -25px;
     }
     .silohon-irp{
-        width: calc(100% + 40px);
         grid-template-columns: auto 90px;
-        gap: 12px;
+        gap: 10px;
         align-items: center;
-        margin-left: -20px;
     }
     .silohon-irp .irp-relative{
         padding-left: 10px;

@@ -72,6 +72,11 @@ function fast_render_inline_related_posts( $content ){
  * @package silohon-fast
  */
 function fast_render_meta( $id, $repeat ){
+    $optionQuery = get_option('irp_option');
+    $related = $optionQuery['query'];
+    $cat = get_the_category( $id );
+    $tags = wp_get_post_tags( $id, array('fields' => 'ids'));
+
     $args = array(
         'post_type'         =>  'post',
         'posts_per_page'    =>  $repeat,
@@ -80,7 +85,41 @@ function fast_render_meta( $id, $repeat ){
         'orderby'           =>  'rand'
     );
 
-    $query = new WP_Query($args);
+    if( $related === 'category'){
+        $args['tax_query'] = array(
+            'relation'  =>  'OR',
+            array(
+                'taxonomy'      =>  'category',
+                'field'         =>  'term_id',
+                'terms'         =>  wp_list_pluck($cat, 'term_id')
+            )
+        );
+    } else if( $related === 'tags'){
+        $args['tax_query'] = array(
+            'relation'  =>  'OR',
+            array(
+                'taxonomy'  =>  'post_tag',
+                'field'     =>  'term_id',
+                'terms'     =>  $tags
+            )
+        );
+    } else if( $related === 'cat_tag'){
+        $args['tax_query'] = array(
+            'relation'  =>  'OR',
+            array(
+                'taxonomy'  =>  'category',
+                'field'     =>  'term_id',
+                'terms'     =>  wp_list_pluck($cat, 'term_id')
+            ),
+            array(
+                'taxonomy'  =>  'post_tag',
+                'field'     =>  'term_id',
+                'terms'     =>  $tags
+            )
+        );
+    }
+
+    $query = new WP_Query( $args );
     return $query->posts;
 }
 
@@ -112,13 +151,13 @@ function create_html_output($post_id){
     }
 
     $target = !empty($myOption['target']) ? $myOption['target'] : '_self';
-    $type = !empty($myOption['type']) ? $myOption['type'] : 'nofollow';
-    $irp_text = !empty($myOption['text']) ? $myOption['text'] : 'Read too:';
+    $type = !empty($myOption['rel']) ? $myOption['rel'] : 'nofollow';
+    $irp_button = !empty($myOption['button']) ? $myOption['button'] : 'Read more';
 
 
     $htmlOutput = '<a target="'. $target .'" href="'. esc_url(get_the_permalink($post_id)) .'" rel="'. $type .'" title="'. esc_attr(get_the_title($post_id)) .'" class="silohon-irp">';
     $htmlOutput .= '<div class="irp-relative">';
-    $htmlOutput .= '<span class="irp-button">'. esc_attr($irp_text) .'</span>';
+    $htmlOutput .= '<span class="irp-button">'. esc_attr($irp_button) .'</span>';
     $htmlOutput .= '<p class="irp-title">'. esc_attr(get_the_title($post_id)) .'</p>';
     $htmlOutput .= '</div>';
     $htmlOutput .= $printImage;
