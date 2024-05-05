@@ -91,10 +91,43 @@ add_settings_field( 'fast-organization-url', 'URL', function(){
  */
 add_settings_field( 'fast-organization-sameas', 'sameAs', function(){
     $organization = get_option('seo_two');
-
+    $sameAs = $organization['sameAs'];
     ?>
 
-    <input type="url" name="seo_two[sameAs]" value="<?php echo $organization['sameAs']; ?>">
+    <ul class="multiInput" id="multiInput">
+        <?php if(!empty($sameAs)){
+            foreach( $sameAs as $same){ ?>
+                <li class="listInput">
+                    <input type="url" name="seo_two[sameAs][]" value="<?php echo esc_attr( $same ); ?>" />
+                    <button type="button" class="remove-sameas">
+                        <span class="dashicons dashicons-trash"></span>
+                    </button>
+                </li>
+                <?php
+            }
+        } ?>
+    </ul>
+
+    <button class="button button-primary" type="button" id="add-sameas">
+        Add URL
+    </button>
+
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#add-sameas').on('click', function () {
+                $('#multiInput').append(`
+                    <li class="listInput">
+                        <input type="url" name="seo_two[sameAs][]">
+                        <button type="button" class="remove-sameas"><span class="dashicons dashicons-trash"></span></button>
+                    </li>
+                `);
+            });
+
+            $('#multiInput').on('click', '.remove-sameas', function () {
+                $(this).closest('.listInput').remove();
+            });
+        });
+    </script>
 
     <?php
 }, 'fast-seo', 'seo2' );

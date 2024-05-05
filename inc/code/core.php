@@ -8,6 +8,38 @@
  */
 
 
+/**
+ * Register tinyMCE button for ease using shortcode
+ * 
+ * @package silohon-fast
+ */
+define( 'fast_js_shortcode', FAST_URI . '/inc/code/shortcode.js' );
+add_action( 'admin_init', 'fast_register_tinymce_buttons' );
+function fast_register_tinymce_buttons(){
+    global $typenow;
+
+    if( !current_user_can( 'edit_posts' ) && !current_user_can( 'edit_pages' ) ){
+        return;
+    }
+
+    if( get_user_option('rich_editing') === 'true' ){
+        add_filter( 'mce_external_plugins', 'fast_mce_external_plugins' );
+        add_filter( 'mce_buttons', 'fast_mce_buttons' );
+    }
+
+    function fast_mce_external_plugins( $plugin_array ){
+        $plugin_array['fast_mce'] = fast_js_shortcode;
+        return $plugin_array;
+    }
+
+    function fast_mce_buttons( $buttons ){
+        array_push( $buttons, 'fast_mce' );
+
+        return $buttons;
+    }
+}
+
+
 
 
 /**

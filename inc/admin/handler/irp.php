@@ -136,3 +136,64 @@ add_settings_field( 'irp-query', 'Related query', function(){
 
     <?php
 }, 'fast-re', 'irp1' );
+
+
+
+/**
+ * Irp Background color
+ * 
+ * @package silohon-fast
+ */
+add_settings_field( 'irp-bg', 'Background color', function(){
+    $option = get_option('irp_option');
+    $value = !empty($option['bg']) ? $option['bg'] : '#e5ac1b'; ?>
+
+    <input type="color" name="irp_option[bg]" value="<?php echo $value; ?>">
+
+    <?php
+}, 'fast-re', 'irp1' );
+
+
+/**
+ * Irp Title Color
+ * 
+ * @package silohon-fast
+ */
+add_settings_field( 'irp-title-color', 'Title color', function(){
+    $option = get_option('irp_option');
+    $value = !empty($option['title_color']) ? $option['title_color'] : '#000000'; ?>
+
+    <input type="color" name="irp_option[title_color]" value="<?php echo $value; ?>">
+
+    <?php
+}, 'fast-re', 'irp1' );
+
+
+/**
+ * Section color settings for Inline related posts
+ * 
+ * @package silohon-fast
+ */
+add_settings_field( 'irp-button-color', 'Button Text color', function(){
+    $option = get_option('irp_option');
+    $value = !empty($option['button_color']) ? $option['button_color'] : '#ffffff'; ?>
+
+    <input type="color" name="irp_option[button_color]" value="<?php echo $value; ?>">
+
+    <?php
+}, 'fast-re', 'irp1' );
+
+
+/**
+ * Irp Button bg Color
+ * 
+ * @package silohon-fast
+ */
+add_settings_field( 'irp-button-bg', 'Button bg color', function(){
+    $option = get_option('irp_option');
+    $value = !empty($option['button_bg']) ? $option['button_bg'] : '#000000'; ?>
+
+    <input type="color" name="irp_option[button_bg]" value="<?php echo $value; ?>">
+
+    <?php
+}, 'fast-re', 'irp1' );

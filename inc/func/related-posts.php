@@ -153,12 +153,16 @@ function create_html_output($post_id){
     $target = !empty($myOption['target']) ? $myOption['target'] : '_self';
     $type = !empty($myOption['rel']) ? $myOption['rel'] : 'nofollow';
     $irp_button = !empty($myOption['button']) ? $myOption['button'] : 'Read more';
+    $background_color = !empty($myOption['bg']) ? $myOption['bg'] : '#e5ac1b';
+    $button_bg_color = !empty($myOption['button_bg']) ? $myOption['button_bg'] : '#000000';
+    $button_color = !empty($myOption['button_color']) ? $myOption['button_color'] : '#ffffff';
+    $title_color = !empty($myOption['title_color']) ? $myOption['title_color'] : '#000000';
 
 
-    $htmlOutput = '<a target="'. $target .'" href="'. esc_url(get_the_permalink($post_id)) .'" rel="'. $type .'" title="'. esc_attr(get_the_title($post_id)) .'" class="silohon-irp">';
+    $htmlOutput = '<a target="'. $target .'" href="'. esc_url(get_the_permalink($post_id)) .'" rel="'. $type .'" title="'. esc_attr(get_the_title($post_id)) .'" class="silohon-irp" style="background-color: '. $background_color .';border-left: 4px solid '. $button_bg_color .';">';
     $htmlOutput .= '<div class="irp-relative">';
-    $htmlOutput .= '<span class="irp-button">'. esc_attr($irp_button) .'</span>';
-    $htmlOutput .= '<p class="irp-title">'. esc_attr(get_the_title($post_id)) .'</p>';
+    $htmlOutput .= '<span class="irp-button" style="background-color: '. $button_bg_color .'; color: '. $button_color .';">'. esc_attr($irp_button) .'</span>';
+    $htmlOutput .= '<p class="irp-title" style="color: '. $title_color .';">'. esc_attr(get_the_title($post_id)) .'</p>';
     $htmlOutput .= '</div>';
     $htmlOutput .= $printImage;
     $htmlOutput .= '</a>';

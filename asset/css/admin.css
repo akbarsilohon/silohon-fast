@@ -61,7 +61,7 @@
 .fast_form .multiInput{
     margin-top: -5px;
 }
-button#remove-sameas{
+button.remove-sameas{
     border: red;
     background-color: red;
     color: white;
@@ -72,6 +72,11 @@ button#remove-sameas{
     cursor: pointer;
     transition: 0.3s ease-in-out;
 }
-button#remove-sameas:hover{
+button.remove-sameas:hover{
     background-color: #821616;
 }
+
+
+/* 
+Tiny MCE Plugin CSS
+*/

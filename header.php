@@ -29,7 +29,7 @@
     ?>
 </head>
 <body <?php body_class(); ?> itemscope itemtype="https://schema.org/Blog">
-    <header class="fast_header">
+    <header class="fast_header" id="header">
         <div class="header_inner">
             <a href="<?php echo home_url('/'); ?>" rel="home" title="<?php echo bloginfo( 'name' ); ?>" class="brand_url">
                 <?php

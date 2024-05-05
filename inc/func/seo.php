@@ -66,7 +66,7 @@ function fast_render_organization_schema(){
     $outputJSON .= '"@type": "Organization",';
     $outputJSON .= '"image": "'. $organization['image'] .'",';
     $outputJSON .= '"url": "'. $organization['url'] .'",';
-    $outputJSON .= '"sameAs": "'. $organization['sameAs'] .'",';
+    $outputJSON .= '"sameAs": ' . json_encode($organization['sameAs']) . ',';
     $outputJSON .= '"logo": "'. $organization['logo'] .'",';
     $outputJSON .= '"name": "'. $organization['name'] .'",';
     $outputJSON .= '"description": "'. $organization['description'] .'",';

@@ -450,9 +450,6 @@ a{
     grid-template-columns: auto 150px;
     gap: 1rem;
     margin-bottom: 1rem;
-    background-color: #222;
-    color: #fff;
-    border-left: 4px solid var(--main-color);
     border-radius: 10px;
 }
 .silohon-irp .irp-relative{
