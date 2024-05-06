@@ -33,6 +33,22 @@ add_settings_field( 'fast-excerpt', 'Excerpt Length', function(){
 
 
 add_settings_section( 'sec-post', '<h1 class="fast-admin-section">Single Post</h1>', null, 'fast-article' );
+
+/**
+ * Using Table of Content or Not
+ * 
+ * @package silohon-fast
+ */
+add_settings_field( 'fast-toc', 'Auto Table Of Content', function(){
+    $option = get_option('fast_article');
+    $value = !empty($option['toc'] && $option['toc'] === 'true' ) ? 'checked' : ''; ?>
+
+    <input type="checkbox" name="fast_article[toc]" value="true" <?php echo $value ?>>
+
+    <?php
+}, 'fast-article', 'sec-post' );
+
+
 /**
  * Thumbnails option
  * 

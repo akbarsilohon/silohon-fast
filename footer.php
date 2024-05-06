@@ -99,5 +99,13 @@
 
 <?php wp_footer(); ?>
 
+<?php 
+$footer = get_option('fast_innseert');
+if(!empty($footer['footer'])){
+    echo $footer['footer'];
+}
+
+?>
+
 </body>
 </html>
