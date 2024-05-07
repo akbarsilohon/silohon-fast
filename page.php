@@ -15,12 +15,22 @@ if(!empty($get_meta['builder_active'])){ ?>
     <div class="container fastPosts">
         <?php
 
+        if(!empty($get_meta['carousel'])){
+            /**
+             * Render Hero Posts
+             * 
+             * @package silohon-fast
+             */
+            FAST_PART( 'template/carousel' );
+        }
+
+
         /**
-         * Render Hero Posts
+         * Swiching style
          * 
          * @package silohon-fast
          */
-        FAST_PART( 'template/hero' );
+        FAST_PART('template/swiching');
         ?>
     </div>
 

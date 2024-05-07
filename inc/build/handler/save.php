@@ -27,6 +27,42 @@ function fast_save_builder_meta( $post_id ){
     } else{
         delete_post_meta( $post_id, 'builder_active' );
     }
+
+
+    /**
+     * carousel handler save meta
+     * 
+     * @package silohon-fast
+     */
+    $carousel = $_POST['carousel'];
+    if(isset($carousel) && !empty($carousel) && $carousel['active'] == 'true' ){
+        $hero_data = $carousel;
+        array_walk_recursive( $hero_data, function(&$value){
+            $value = sanitize_text_field($value);
+        });
+
+        update_post_meta( $post_id, 'carousel', $hero_data );
+    } else{
+        delete_post_meta( $post_id, 'carousel' );
+    }
+
+
+    /**
+     * List style call or render
+     * 
+     * @package silohon-fast
+     */
+    $buider_data = $_POST['sls_builder_data'];
+    if(isset($buider_data) && !empty($buider_data)){
+        $data = $buider_data;
+        array_walk_recursive( $data, function(&$value){
+            $value = sanitize_text_field($value);
+        });
+
+        update_post_meta( $post_id, 'sls_data', $data );
+    } else{
+        delete_post_meta( $post_id, 'sls_data' );
+    }
 }
 
 

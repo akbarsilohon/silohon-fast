@@ -10,12 +10,16 @@
  */
 
 $optionIrp = get_option('irp_option');
-if( !empty($optionIrp['active']) && $optionIrp['active'] === 'true' ){
+if( !empty($optionIrp['active']) && $optionIrp['active'] === 'true'){
     add_filter( 'the_content', 'fast_render_inline_related_posts' );
 }
 
 function fast_render_inline_related_posts( $content ){
     global $post;
+
+    if(!is_single()){
+        return;
+    }
 
     $option = get_option('irp_option');
 

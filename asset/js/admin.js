@@ -112,3 +112,46 @@ jQuery(document).ready( function( $ ){
 if( jQuery('#builder_active').val() === 'true' ){
     jQuery('#postdivrich, #pageparentdiv, #postimagediv, #edit-slug-box').hide();
 }
+
+var defCat = jQuery('#cats_default').html();
+jQuery('.add_data').click( function(){
+    var style = jQuery(this).data('style');
+
+    jQuery('#item_list').append('\
+        <li id="data_item_'+ nextCell +'" class="data_item">\
+            <div class="data_head">\
+                <span class="heading">Style: '+style+'</span>\
+                <div id="btnDatas">\
+                    <i id="openDATAs" class="bx bx-plus-circle"></i>\
+                    <i id="closeDATAs" class="bx bx-minus-circle"></i>\
+                </div>\
+            </div>\
+            <div class="body_item">\
+                <label for="">Category:</label>\
+                <select name="sls_builder_data['+ nextCell +'][cat]" id="">\
+                    '+defCat+'\
+                </select>\
+            </div>\
+            <div class="body_item">\
+                <label for="">Post Count:</label>\
+                <input type="number" name="sls_builder_data['+ nextCell +'][count]" value="5">\
+            </div>\
+            <div class="body_item">\
+                <label for="">Random Post:</label>\
+                <input type="checkbox" name="sls_builder_data['+ nextCell +'][rand]" value="rand">\
+            </div>\
+            <input type="hidden" name="sls_builder_data['+ nextCell +'][style]" value="'+style+'">\
+            <i id="removed_list" class="bx bx-trash"></i>\
+        </li>\
+    ');
+
+    nextCell++;
+});
+
+
+// Delete list
+jQuery(document).on('click', '#removed_list', function(){
+    jQuery(this).parent().addClass('removered').fadeOut( function(){
+        jQuery(this).remove();
+    });
+});
