@@ -50,3 +50,12 @@ require_once FAST_DIR . '/inc/admin/dashboard.php';
  * @package silohon-fast
  */
 require_once FAST_DIR . '/inc/code/core.php';
+
+
+
+/**
+ * Page Builder functeion
+ * 
+ * @package silohon-fast
+ */
+require_once FAST_DIR . '/inc/build/load.php';

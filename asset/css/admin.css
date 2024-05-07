@@ -78,5 +78,12 @@ button.remove-sameas:hover{
 
 
 /* 
-Tiny MCE Plugin CSS
+Page Builder CSS
 */
+#fastHomeBuilder{
+    display: none;
+    font-family: 'Poppins', sans-serif;
+}
+#fast_call_builder{
+    margin-top: 1rem;
+}

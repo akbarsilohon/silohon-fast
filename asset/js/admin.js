@@ -83,5 +83,32 @@ jQuery(document).ready( function( $ ){
 
         ogImg.open();
     });
+
+
+    /**
+     * Page Builder button
+     * 
+     * @package silohon-fast
+     */
+    $('#fast_call_builder').click( function(){
+        if($(this).hasClass('button-primary builder-active')){
+            $(this).removeClass('button-primary builder-active');
+            $('#postdivrich, #pageparentdiv, #postimagediv, #edit-slug-box').fadeIn();
+            $('#builder_active').val('');
+            $('#fastHomeBuilder').hide();
+            $(this).text('Use Builder');
+        } else{
+            $(this).addClass('button-primary builder-active');
+            $('#builder_active').val('true');
+            $('#fastHomeBuilder').fadeIn();
+            $('#postdivrich, #pageparentdiv, #postimagediv, #edit-slug-box').hide();
+            $(this).text('Remove Builder');
+        }
+
+        return false;
+    });
 });
 
+if( jQuery('#builder_active').val() === 'true' ){
+    jQuery('#postdivrich, #pageparentdiv, #postimagediv, #edit-slug-box').hide();
+}
