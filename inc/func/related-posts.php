@@ -17,15 +17,15 @@ if( !empty($optionIrp['active']) && $optionIrp['active'] === 'true'){
 function fast_render_inline_related_posts( $content ){
     global $post;
 
-    if(!is_single()){
-        return;
-    }
-
     $option = get_option('irp_option');
 
     $irp_word = !empty($option['word']) ? $option['word'] : 250;
     $irp_repeat = !empty($option['repeat']) ? $option['repeat'] : 3;
     $irp_meta = fast_render_meta( $post->ID, $irp_repeat );
+
+    if (empty($content)) {
+        return $content;
+    }
 
     $dom = new DOMDocument();
     @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
