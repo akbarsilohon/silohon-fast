@@ -17,7 +17,7 @@ if(isset($get_meta['carousel'][0])){
 
 <section class="hero">
     <div class="hero_inner">
-        <span class="heading">Slider</span>
+        <span class="heading">Carousel</span>
         <div id="btnhero">
             <i id="openhero" class='bx bx-plus-circle'></i>
             <i id="closehero" class='bx bx-minus-circle'></i>

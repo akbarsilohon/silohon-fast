@@ -1,6 +1,6 @@
 /* =========================================
 * Theme Name: SILOHON FAST
-* Version: 1.7.2
+* Version: 1.7.3
 * Theme URI: https://github.com/akbarsilohon/silohon-fast.git
 * Author: Nur Akbar
 * Author URI: https://github.com/akbarsilohon
@@ -459,6 +459,119 @@ a{
     font-weight: 900;
 }
 
+/* Page builder style */
+.mgt-1{
+    margin-top: -1rem;
+}
+.grid2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+.g90-auto{
+    display: grid;
+    grid-template-columns: 90px auto;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+.smallUri{
+    width: 100%;
+    height: 90px;
+}
+.thumSmall{
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.smallBody .meta{
+    font-size: 12px;
+}
+.smUri{
+    color: #000;
+}
+.smallTitle{
+    font-weight: 900;
+    font-size: 15px;
+    margin-top: 10px;
+}
+.smallRelative{
+    position: relative;
+    width: 100%;
+    height: 200px;
+    display: block;
+    margin-bottom: 1rem;
+}
+.smallAbsolute{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.smallBody_absolute{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+    padding: 30px 20px 20px 20px;
+    border-radius: 10px;
+}
+.authorAbsolute{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--main-color);
+    color: white;
+    font-size: 13px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-top-right-radius: 10px;
+}
+.smallTitle_absolute{
+    font-size: 17px;
+    color: #fff;
+}
+
+.FastList_post{
+    list-style: none;
+    display: block;
+}
+.listPost_index{
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 40px auto;
+    gap: 1rem;
+    font-family: 'Roboto Slab', serif;
+    align-items: center;
+    border-bottom: 1px solid var(--main-color);
+    padding-bottom: 10px;
+}
+.caunt_number {
+    border-radius: 50%;
+    background-color: var(--main-color);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+}
+.listUri{
+    color: #444;
+}
+.post_list-title{
+    font-size: 16px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
 
 /* Single Post */
 .dblok{
@@ -841,89 +954,6 @@ a{
         font-size: 17px;
         font-weight: 900;
     }
-}
-
-
-/* Page builder style */
-.mgt-1{
-    margin-top: -1rem;
-}
-.grid2{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-.g90-auto{
-    display: grid;
-    grid-template-columns: 90px auto;
-    gap: 10px;
-    margin-bottom: 1rem;
-}
-.smallUri{
-    width: 100%;
-    height: 90px;
-}
-.thumSmall{
-    width: 100%;
-    height: 100%;
-    object-position: center;
-    object-fit: cover;
-    border-radius: 10px;
-}
-.smallBody .meta{
-    font-size: 12px;
-}
-.smUri{
-    color: #000;
-}
-.smallTitle{
-    font-weight: 900;
-    font-size: 15px;
-    margin-top: 10px;
-}
-.smallRelative{
-    position: relative;
-    width: 100%;
-    height: 200px;
-    display: block;
-    margin-bottom: 1rem;
-}
-.smallAbsolute{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    object-position: center;
-    object-fit: cover;
-    border-radius: 10px;
-}
-.smallBody_absolute{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
-    padding: 30px 20px 20px 20px;
-    border-radius: 10px;
-}
-.authorAbsolute{
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: var(--main-color);
-    color: white;
-    font-size: 13px;
-    font-family: 'Roboto Slab', serif;
-    font-weight: 600;
-    padding: 5px 10px;
-    border-top-right-radius: 10px;
-}
-.smallTitle_absolute{
-    font-size: 17px;
-    color: #fff;
-}
-
-
-@media(max-width:560px){
     .grid2{
         display: block;
     }

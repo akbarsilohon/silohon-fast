@@ -87,3 +87,109 @@ Page Builder CSS
 #fast_call_builder{
     margin-top: 1rem;
 }
+.builderContainer{
+    margin-top: 1rem;
+}
+.hero,
+.sls_data{
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.sls_data{
+    margin-top: 2rem;
+}
+.hero_inner,
+.data_head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #444;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.heading{
+    font-size: 14px;
+    font-weight: 500;
+}
+.hero_body{
+    position: relative;
+    display: block;
+    background-color: #fff;
+    padding: 10px 20px;
+    margin-top: 1rem;
+    border-radius: 10px;
+}
+.data_item{
+    margin-bottom: 1rem;
+    display: block;
+}
+.body_item{
+    position: relative;
+    display: block;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.data_item{
+    position: relative;
+    margin-bottom: 2rem;
+}
+#removed_list{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    font-size: 400;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.data_build{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    background-color: #fff;
+    padding: 10px 20px;
+    margin-top: 1rem;
+    border-radius: 10px;
+}
+.data_build a img{
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+.input_type{
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.input_type label{
+    width: 200px;
+    font-weight: 400;
+    font-size: 14px;
+}
+.input_type select option{
+    width: 100%;
+    max-width: 400px;
+    height: 1rem;
+}
+#btnhero,
+#btnData,
+#btnDatas{
+    background-color: #fff;
+    color: #444;
+    font-size: 18px;
+    padding: 3px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#openhero,
+#openDATA,
+#openDATAs{
+    display: none;
+}

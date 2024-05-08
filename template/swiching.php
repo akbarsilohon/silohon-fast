@@ -28,6 +28,10 @@ if(!empty( $dataStyle ) && is_array( $dataStyle )){
                 FAST_PART('template/style/part2');
             break;
 
+            case 's3':
+                FAST_PART('template/style/part3');
+            break;
+
         }
     }
 }

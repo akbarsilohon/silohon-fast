@@ -107,6 +107,33 @@ jQuery(document).ready( function( $ ){
 
         return false;
     });
+
+
+    // Close items ====================
+    // ================================
+    $('#closehero').click(function(){
+        $('#closehero').hide();
+        $('#openhero').fadeIn();
+        $('.hero_body').slideUp('slow');
+    });
+
+    $('#openhero').click(function(){
+        $('#openhero').hide();
+        $('#closehero').fadeIn();
+        $('.hero_body').slideDown('slow');
+    });
+
+
+    // Create item data
+    $('#item_list').sortable();
+    $(document).on('click', '#openDATAs', function(){
+        $(this).closest('.data_item').find('.body_item').slideDown('slow');
+        $(this).closest('.data_item').find('#removed_list').hide();
+    });
+    $(document).on('click', '#closeDATAs', function(){
+        $(this).closest('.data_item').find('.body_item').slideUp('slow');
+        $(this).closest('.data_item').find('#removed_list').hide();
+    });
 });
 
 if( jQuery('#builder_active').val() === 'true' ){

@@ -12,6 +12,9 @@
                 <img src="<?php echo FAST_URI . '/inc/build/img/s1.png'; ?>">
             </a>
             <a class="add_data" data-style="s2">
+                <img src="<?php echo FAST_URI . '/inc/build/img/s2.png'; ?>">
+            </a>
+            <a class="add_data" data-style="s3">
                 <img src="<?php echo FAST_URI . '/inc/build/img/s3.png'; ?>">
             </a>
         </div>
