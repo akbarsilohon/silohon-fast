@@ -11,62 +11,63 @@
 
 $optionIrp = get_option('irp_option');
 if( !empty($optionIrp['active']) && $optionIrp['active'] === 'true'){
-    add_filter( 'the_content', 'fast_render_inline_related_posts' );
+    add_filter( 'the_content', 'fast_render_inline_related_posts', 99 );
 }
 
 function fast_render_inline_related_posts( $content ){
     global $post;
+    $meta_checker = get_post_meta( $post->ID, 'fast_irp_disable', true );
 
-    $option = get_option('irp_option');
-
-    $irp_word = !empty($option['word']) ? $option['word'] : 250;
-    $irp_repeat = !empty($option['repeat']) ? $option['repeat'] : 3;
-    $irp_meta = fast_render_meta( $post->ID, $irp_repeat );
-
-    if (empty($content)) {
+    if( empty( $content ) || $meta_checker === 'true' ){
         return $content;
-    }
-
-    $dom = new DOMDocument();
-    @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    } else{
+        $option = get_option('irp_option');
+        $irp_word = !empty($option['word']) ? $option['word'] : 250;
+        $irp_repeat = !empty($option['repeat']) ? $option['repeat'] : 3;
+        $irp_meta = fast_render_meta( $post->ID, $irp_repeat );
     
-    $xpath = new DOMXPath($dom);
-    $fixWord = 0;
-    $repeat_here = 0;
-    $nodes = $xpath->query('//text()');
-
-    foreach( $nodes as $node ){
-        if( $node->parentNode->nodeName === 'p' ){
-            $word = explode( ' ', trim( $node->nodeValue ));
-            $word_count = count( $word );
-            $fixWord += $word_count;
-
-            if($fixWord >= $irp_word && !empty($irp_meta) && $repeat_here < $irp_repeat){
-                $fragment = $dom->createDocumentFragment();
-                $random_key = array_rand($irp_meta);
-                $random_post_id = $irp_meta[$random_key];
-
-                unset( $irp_meta[$random_key] );
-
-                $irp_content = create_html_output( $random_post_id );
-                if( !empty( $irp_content )){
-                    $fragment->appendXML($irp_content);
-
-                    if( $node->parentNode->nextSibling ){
-                        $node->parentNode->parentNode->insertBefore($fragment, $node->parentNode->nextSibling);
-                    } else{
-                        $node->parentNode->parentNode->appendChild($fragment);
+        $dom = new DOMDocument();
+        @$dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        
+        $xpath = new DOMXPath($dom);
+        $fixWord = 0;
+        $repeat_here = 0;
+        $nodes = $xpath->query('//text()');
+    
+        foreach( $nodes as $node ){
+            if( $node->parentNode->nodeName === 'p' ){
+                $word = explode( ' ', trim( $node->nodeValue ));
+                $word_count = count( $word );
+                $fixWord += $word_count;
+    
+                if($fixWord >= $irp_word && !empty($irp_meta) && $repeat_here < $irp_repeat){
+                    $fragment = $dom->createDocumentFragment();
+                    $random_key = array_rand($irp_meta);
+                    $random_post_id = $irp_meta[$random_key];
+    
+                    unset( $irp_meta[$random_key] );
+    
+                    $irp_content = create_html_output( $random_post_id );
+                    if( !empty( $irp_content )){
+                        $fragment->appendXML($irp_content);
+    
+                        if( $node->parentNode->nextSibling ){
+                            $node->parentNode->parentNode->insertBefore($fragment, $node->parentNode->nextSibling);
+                        } else{
+                            $node->parentNode->parentNode->appendChild($fragment);
+                        }
+    
+                        $fixWord = 0;
+                        $repeat_here++;
                     }
-
-                    $fixWord = 0;
-                    $repeat_here++;
                 }
             }
         }
+    
+        $content = $dom->saveHTML();
+        return $content;
     }
 
-    $content = $dom->saveHTML();
-    return $content;
 }
 
 

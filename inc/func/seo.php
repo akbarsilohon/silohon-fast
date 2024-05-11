@@ -87,3 +87,91 @@ function fast_render_organization_schema(){
     echo $outputJSON;
 }
 add_action('wp_head', 'fast_render_organization_schema');
+
+
+/**
+ * Add ID to Heading single posts
+ * 
+ * @package silohon-fast
+ */
+function generate_toc_and_add_id_to_heading($content) {
+    $autoTOC = get_option('fast_article');
+    $disable_toc = get_post_meta( get_the_ID(), 'fast_disable_toc', true );
+    if(empty($autoTOC['toc']) || $disable_toc === 'true' ){
+        return $content;
+    } else{
+        preg_match('/<h2>(.*?)<\/h2>/s', $content, $first_h2_match, PREG_OFFSET_CAPTURE);
+
+        if (!empty($first_h2_match)) {
+            $toc = generate_toc($content);
+            $content = substr_replace($content, $toc, $first_h2_match[0][1], 0);
+        }
+
+        $content = preg_replace_callback('/<h([2-3])>(.*?)<\/h[2-3]>/s', function($matches) {
+            $tag = $matches[1];
+            $text = $matches[2];
+            $isReplace = array(
+                ' ', '.', ',', '-',
+                '?', '!', '#', '*', '#', '"',
+                '@', '$', '%', '^', '(', ')', '+',
+                '=', '{', '}', '[', ']', ':', '\''
+            );
+            $id = strtolower(str_replace($isReplace, '_', preg_replace('/\s+/', '-', preg_replace('/[^a-zA-Z0-9\s]/', '', $text))));
+            return '<h' . $tag . ' id="' . $id . '">' . $text . '</h' . $tag . '>';
+        }, $content);
+
+        return $content;
+    }
+}
+
+function generate_toc($content) {
+    $toc = '';
+
+    // Build TOC
+    $toc .= '<div class="silo_toc">';
+    $toc .= '<div class="toc-title">';
+    $toc .= '<p class="this_toc">Table of Contents:</p>';
+    $toc .= '<div id="silo_icon_toc" class="silo_icon_toc">';
+    $toc .= '<span></span><span></span><span></span>';
+    $toc .= '</div>';
+    $toc .= '</div>';
+    $toc .= '<ul id="this_toc_counters">';
+
+    // Iterate through all <h2> and <h3> tags
+    preg_match_all('/<h([2-3])>(.*?)<\/h[2-3]>/s', $content, $matches);
+    $level = 2; // Start at h2 level
+    foreach ($matches[1] as $key => $tag) {
+        $text = $matches[2][$key];
+        $isReplace = array(
+            ' ', '.', ',', '-',
+            '?', '!', '#', '*', '#', '"',
+            '@', '$', '%', '^', '(', ')', '+',
+            '=', '{', '}', '[', ']', ':', '\''
+        );
+        $id = strtolower(str_replace($isReplace, '_', preg_replace('/\s+/', '-', preg_replace('/[^a-zA-Z0-9\s]/', '', $text))));
+        if ($tag == 2) {
+            if ($level > 2) {
+                $toc .= '</ul></li>';
+            }
+            $toc .= '<li><a title="'. $text .'" href="#' . $id . '">' . $text . '</a>';
+            $level = 2;
+        } elseif ($tag == 3) {
+            if ($level == 2) {
+                $toc .= '<ul>';
+            }
+            $toc .= '<li><a title="'. $text .'" href="#' . $id . '">' . $text . '</a></li>';
+            $level = 3;
+        }
+    }
+
+    if ($level == 3) {
+        $toc .= '</ul>';
+    }
+
+    $toc .= '</ul>';
+    $toc .= '</div>';
+    $toc .= "<script>const thisTOC = document.getElementById('silo_icon_toc');const thiTOCTar = document.getElementById('this_toc_counters');thisTOC.addEventListener('click', function(){thiTOCTar.classList.toggle('tocNone');});</script>";
+
+    return $toc;
+}
+add_filter('the_content', 'generate_toc_and_add_id_to_heading');

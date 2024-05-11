@@ -9,7 +9,7 @@
 
 add_action( 'admin_menu', 'fast_admin_menu');
 function fast_admin_menu(){
-    add_menu_page( FAST_NAME, FAST_NAME, 'manage_options', 'fast-dash', 'fast_dash', 'dashicons-category', 1 );
+    add_menu_page( FAST_NAME, FAST_NAME, 'manage_options', 'fast-dash', 'fast_dash', 'dashicons-update-alt', 1 );
     add_submenu_page( 'fast-dash', FAST_NAME, 'General', 'manage_options', 'fast-dash', 'fast_dash' );
 
     // Article setting page
@@ -135,3 +135,64 @@ function fast_admin_inits(){
     require FAST_DIR . '/inc/admin/handler/color.php';
     require FAST_DIR . '/inc/admin/handler/irp.php';
 }
+
+
+/**
+ * Add MetaBoxes to spesifix post by ID
+ * 
+ * @package silohon-fast
+ */
+function fast_add_new_meta_boxes() {
+    add_meta_box(
+        'show_related_posts_meta_box',
+        'Fast New Meta',
+        'fast_display_box_posts_meta_box',
+        'post',
+        'side',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'fast_add_new_meta_boxes');
+
+
+function fast_display_box_posts_meta_box($post) {
+    $disable_irp = get_post_meta($post->ID, 'fast_irp_disable', true);
+    $disable_toc = get_post_meta( $post->ID, 'fast_disable_toc', true );
+    $use_faq_meta = get_post_meta( $post->ID, 'fast_faq_meta', true );
+    ?>
+    <input type="checkbox" name="fast_irp_disable" id="fast_irp_disable" <?php checked($disable_irp, 'true'); ?> />
+    <label for="fast_irp_disable">Disable IRP</label><br>
+
+    <input type="checkbox" name="fast_disable_toc" id="fast_disable_toc" <?php checked($disable_toc, 'true'); ?> />
+    <label for="fast_disable_toc">Disable IRP</label><br>
+
+    <input type="checkbox" name="fast_faq_meta" id="fast_faq_meta" <?php checked($use_faq_meta, 'true'); ?>>
+    <label for="fast_faq_meta">Use FAQ Meta SEO</label><br>
+
+    <?php
+}
+
+function fast_save_new_posts_meta_box($post_id) {
+
+    // DIsable Related Posts
+    if (isset($_POST['fast_irp_disable'])) {
+        update_post_meta($post_id, 'fast_irp_disable', 'true');
+    } else {
+        delete_post_meta($post_id, 'fast_irp_disable');
+    }
+
+
+    // Adding FAQs meta SEO
+    if(isset($_POST['fast_faq_meta'])){
+        update_post_meta( $post_id, 'fast_faq_meta', 'true' );
+    } else{
+        delete_post_meta($post_id, 'fast_faq_meta');
+    }
+
+    if(isset($_POST['fast_disable_toc'])){
+        update_post_meta( $post_id, 'fast_disable_toc', 'true' );
+    } else{
+        delete_post_meta($post_id, 'fast_disable_toc');
+    }
+}
+add_action('save_post', 'fast_save_new_posts_meta_box');

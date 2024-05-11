@@ -80,28 +80,31 @@ function silohon_fast_faqs_shortcode( $atts, $content = null ){
 
     $html .= '</div>';
 
-    $json_ld = array(
-        "@context" => "https://schema.org",
-        "@type" => "FAQPage",
-        "mainEntity" => array()
-    );
-
-    for( $i = 0; $i < count($question_matches[1]); $i++ ){
-        $question = trim(strip_tags($question_matches[1][$i]));
-        $answer = trim(strip_tags($answer_matches[1][$i]));
-
-        $json_ld["mainEntity"][] = array(
-            "@type" => "Question",
-            "name" => esc_html( $question ),
-            "acceptedAnswer" => array(
-                "@type" => "Answer",
-                "text" => esc_html( $answer )
-            )
+    $use_faq_meta = get_post_meta( get_the_ID(), 'fast_faq_meta', true );
+    if($use_faq_meta === 'true'){
+        $json_ld = array(
+            "@context" => "https://schema.org",
+            "@type" => "FAQPage",
+            "mainEntity" => array()
         );
+    
+        for( $i = 0; $i < count($question_matches[1]); $i++ ){
+            $question = trim(strip_tags($question_matches[1][$i]));
+            $answer = trim(strip_tags($answer_matches[1][$i]));
+    
+            $json_ld["mainEntity"][] = array(
+                "@type" => "Question",
+                "name" => esc_html( $question ),
+                "acceptedAnswer" => array(
+                    "@type" => "Answer",
+                    "text" => esc_html( $answer )
+                )
+            );
+        }
+    
+        $json_ld_string = json_encode($json_ld, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        $html .= '<script type="application/ld+json">' . $json_ld_string . '</script>';
     }
-
-    $json_ld_string = json_encode($json_ld, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-    $html .= '<script type="application/ld+json">' . $json_ld_string . '</script>';
 
     $html .= '
         <script>
