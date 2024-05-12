@@ -164,7 +164,7 @@ function fast_display_box_posts_meta_box($post) {
     <label for="fast_irp_disable">Disable IRP</label><br>
 
     <input type="checkbox" name="fast_disable_toc" id="fast_disable_toc" <?php checked($disable_toc, 'true'); ?> />
-    <label for="fast_disable_toc">Disable IRP</label><br>
+    <label for="fast_disable_toc">Disable TOC</label><br>
 
     <input type="checkbox" name="fast_faq_meta" id="fast_faq_meta" <?php checked($use_faq_meta, 'true'); ?>>
     <label for="fast_faq_meta">Use FAQ Meta SEO</label><br>
