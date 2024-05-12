@@ -135,7 +135,7 @@ function generate_toc($content) {
     $toc .= '<span></span><span></span><span></span>';
     $toc .= '</div>';
     $toc .= '</div>';
-    $toc .= '<ul id="this_toc_counters">';
+    $toc .= '<ul id="this_toc_counters" class="tocNone">';
 
     // Iterate through all <h2> and <h3> tags
     preg_match_all('/<h([2-3])>(.*?)<\/h[2-3]>/i', $content, $matches);
