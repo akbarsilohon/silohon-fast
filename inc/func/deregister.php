@@ -9,7 +9,6 @@
  * @link https://github.com/akbarsilohon/silohon-fast.git
  */
 
-add_filter( 'show_admin_bar', '__return_false' );
 remove_action( 'wp_head', 'dashicons-css' );
 remove_action( 'wp_head', 'wp_generator' );
 remove_action('wp_head', 'print_emoji_detection_script', 7);

@@ -100,14 +100,14 @@ function generate_toc_and_add_id_to_heading($content) {
     if(empty($autoTOC['toc']) || $disable_toc === 'true' ){
         return $content;
     } else{
-        preg_match('/<h2>(.*?)<\/h2>/s', $content, $first_h2_match, PREG_OFFSET_CAPTURE);
+        preg_match('/<h2>(.*?)<\/h2>/i', $content, $first_h2_match, PREG_OFFSET_CAPTURE);
 
         if (!empty($first_h2_match)) {
             $toc = generate_toc($content);
             $content = substr_replace($content, $toc, $first_h2_match[0][1], 0);
         }
 
-        $content = preg_replace_callback('/<h([2-3])>(.*?)<\/h[2-3]>/s', function($matches) {
+        $content = preg_replace_callback('/<h([2-3])>(.*?)<\/h[2-3]>/i', function($matches) {
             $tag = $matches[1];
             $text = $matches[2];
             $isReplace = array(
@@ -138,7 +138,7 @@ function generate_toc($content) {
     $toc .= '<ul id="this_toc_counters">';
 
     // Iterate through all <h2> and <h3> tags
-    preg_match_all('/<h([2-3])>(.*?)<\/h[2-3]>/s', $content, $matches);
+    preg_match_all('/<h([2-3])>(.*?)<\/h[2-3]>/i', $content, $matches);
     $level = 2; // Start at h2 level
     foreach ($matches[1] as $key => $tag) {
         $text = $matches[2][$key];
@@ -174,4 +174,17 @@ function generate_toc($content) {
 
     return $toc;
 }
-add_filter('the_content', 'generate_toc_and_add_id_to_heading');
+add_filter('the_content', 'generate_toc_and_add_id_to_heading', 12 );
+
+
+/**
+ * Remove <br> in the_content() function
+ * 
+ * @package silohon-fast
+ */
+add_filter( 'the_content', 'fast_remove_tag_br', 11 );
+function fast_remove_tag_br( $content ){
+    // Menghapus tag <br>, spasi, dan baris baru sebelum atau sesudahnya
+    $content = preg_replace('/\s*<br\s*\/?>\s*|\s*\n\s*<br\s*\/?>\s*|\s*<br\s*\/?>\s*\n\s*|\s*\n\s*/i', '', $content);
+    return $content;
+}
