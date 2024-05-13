@@ -34,19 +34,19 @@ if( $related ){ ?>
 
                 <article id="post-<?php the_ID() ?>" class="dblock">
                     <div class="grid-2-250">
-                        <a href="<?php echo the_permalink(); ?>" rel="nofollow" title="<?php echo the_title(); ?>" class="fastSmall">
+                        <a href="<?php echo the_permalink(); ?>" title="<?php echo the_title(); ?>" class="fastSmall">
                             <?php echo fast_generate_thumbnail(get_the_ID(), 'medium', 'mediumThumbnmail', 'lazy'); ?>
                         </a>
                         <div class="bodyBlock">
                             <div class="meta">
                                 <span class="theauthor">
-                                    <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" rel="nofollow" title="Post by <?php echo esc_attr(get_the_author_meta('display_name', get_the_author_meta('ID'))); ?>"><?php the_author(); ?></a>
+                                    <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" title="Post by <?php echo esc_attr(get_the_author_meta('display_name', get_the_author_meta('ID'))); ?>"><?php the_author(); ?></a>
                                 </span>
                                 <span class="sparator">/</span>
                                 <span class="times">On <?php echo the_time('F j, Y'); ?></span>
                             </div>
 
-                            <a href="<?php echo the_permalink(); ?>" rel="nofollow" title="<?php echo the_title(); ?>" class="smUri">
+                            <a href="<?php echo the_permalink(); ?>" title="<?php echo the_title(); ?>" class="smUri">
                                 <?php the_title('<h2 class="secondTitle">', '</h2>') ?>
                             </a>
                         </div>
