@@ -19,7 +19,7 @@ $option = get_option('fast_article');
         <article id="post-<?php the_ID(); ?>" class="dblok" itemscope itemtype="https://schema.org/NewsArticle">
             <div class="ontop">
                 <div class="singleCat"><?php fast_cat_link(); ?></div>
-                <?php the_title('<h2 class="singleTitle" itemprop="headline">', '</h2>'); ?>
+                <?php the_title('<h1 class="singleTitle" itemprop="headline">', '</h1>'); ?>
 
                 <?php
                     /**

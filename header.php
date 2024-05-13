@@ -36,6 +36,7 @@
                     $default = FAST_URI . '/asset/img/logo.png';
                     $logo = !empty(get_option('fast_main')['logo']) ? get_option('fast_main')['logo'] : $default;
                     echo '<img width="300" height="60" src="'. esc_url( $logo ) .'" alt="'. get_bloginfo( 'name' ).'"/>';
+                    echo '<h1 class="'. get_bloginfo('name') .'" style="display:none;">'. get_bloginfo('name') .'</h1>';
                 ?>
             </a>
 

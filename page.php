@@ -48,7 +48,7 @@ if(!empty($get_meta['builder_active'])){ ?>
     <div class="container fastPosts">
         <article id="post-<?php the_ID(); ?>" class="dblok">
             <div class="ontop">
-                <?php the_title('<h2 class="singleTitle" style="margin-bottom:2rem;">', '</h2>'); ?>
+                <?php the_title('<h1 class="singleTitle" style="margin-bottom:2rem;">', '</h1>'); ?>
             </div>
 
             <div class="fastContent">

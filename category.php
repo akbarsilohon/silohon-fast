@@ -13,7 +13,7 @@ if(have_posts()) { ?>
 
     <div class="container fastPosts">
         <div class="section_cat">
-            <span class="in_single_tag"><?php echo single_cat_title(); ?></span>
+            <h1 class="in_single_tag"><?php echo single_cat_title(); ?></h1>
         </div>
 
         <div class="tblockStyle">

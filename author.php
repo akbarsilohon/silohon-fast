@@ -15,7 +15,7 @@ if(have_posts()){ ?>
     <div class="container fastPosts">
         <div class="authorBox">
             <?php echo get_avatar( get_the_author_ID(), 150, null, get_the_author_nickname()); ?>
-            <?php echo '<h2 class="authorName">'. get_the_author_meta( 'display_name', get_the_author_ID() ) .'</h2>'; ?>
+            <?php echo '<h1 class="authorName">'. get_the_author_meta( 'display_name', get_the_author_ID() ) .'</h1>'; ?>
         </div>
 
         <div class="section_cat">
