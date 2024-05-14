@@ -59,3 +59,13 @@ require_once FAST_DIR . '/inc/code/core.php';
  * @package silohon-fast
  */
 require_once FAST_DIR . '/inc/build/load.php';
+
+
+
+
+/**
+ * Create Cache Page
+ * 
+ * @package
+ */
+require_once FAST_DIR . '/cache/cache.php';

@@ -26,6 +26,9 @@ function fast_admin_menu(){
 
     // Inline related posts
     add_submenu_page( 'fast-dash', 'Inline Related Posts', 'Inline Related Posts', 'manage_options', 'fast-re', 'fast_re' );
+
+    // Cache Panel
+    add_submenu_page( 'fast-dash', 'Cache Page', 'Cache Page', 'manage_options', 'fast-ca', 'fast_ca' );
 }
 
 
@@ -125,6 +128,22 @@ function fast_re(){ ?>
 <?php
 }
 
+function fast_ca(){ ?>
+
+<div class="fast_container">
+    <h1 class="fastHeading">Cache Control</h1>
+    <?php settings_errors() ?>
+
+    <form action="options.php" method="post" class="fast_form">
+        <?php settings_fields( 'fast-settings-cache' ); ?>
+        <?php do_settings_sections( 'fast-ca' ); ?>
+        <?php submit_button('Save Change'); ?>
+    </form>
+</div>
+
+<?php
+}
+
 
 add_action( 'admin_init', 'fast_admin_inits' );
 function fast_admin_inits(){
@@ -134,6 +153,7 @@ function fast_admin_inits(){
     require FAST_DIR . '/inc/admin/handler/seo.php';
     require FAST_DIR . '/inc/admin/handler/color.php';
     require FAST_DIR . '/inc/admin/handler/irp.php';
+    require FAST_DIR . '/inc/admin/handler/cache-panel.php';
 }
 
 
@@ -196,3 +216,58 @@ function fast_save_new_posts_meta_box($post_id) {
     }
 }
 add_action('save_post', 'fast_save_new_posts_meta_box');
+
+
+
+/**
+ * Add Action Admin_bar_menu
+ * 
+ * @package silohon-fast
+ */
+// Tambahkan link ke toolbar admin
+add_action('admin_bar_menu', 'fast_admin_bar_menu', 999);
+function fast_admin_bar_menu( $wp_admin_bar ) {
+    $args = array(
+        'id' => 'fast-clear-cache',
+        'title' => 'Clear Cache',
+        'href' => admin_url('admin.php?action=fast_clear_cache_action'),
+        'meta' => array(
+            'class' => 'dashicons-trash',
+            'title' => 'Clear Cache'
+        )
+    );
+    $wp_admin_bar->add_node($args);
+}
+
+// Tambahkan action untuk menangani clear cache
+add_action('admin_init', 'fast_clear_cache_action');
+
+function fast_clear_cache_action() {
+    if (isset($_GET['action']) && $_GET['action'] === 'fast_clear_cache_action') {
+        $cache_dir = FAST_DIR . '/cache/temp/';
+        $cache_files = glob($cache_dir . '*.html');
+        if (!empty($cache_files)) {
+            foreach ($cache_files as $file) {
+                if (file_exists($file)) {
+                    unlink($file);
+                }
+            }
+
+            $current_url = admin_url(add_query_arg(array(),$wp->request));
+            wp_redirect($current_url);
+
+            settings_errors('Silohon Fast Cache Success fully deleted', 'success');
+
+            exit;
+
+        } else {
+
+            $current_url = admin_url(add_query_arg(array(),$wp->request));
+            wp_redirect($current_url);
+
+            settings_errors('Not find Cache detected', 'error');
+
+            exit;
+        }
+    }
+}

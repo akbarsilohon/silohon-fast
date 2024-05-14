@@ -101,21 +101,18 @@ if(!empty($carousel) && is_array( $carousel )){
 
                 const slideWidth = slides[0].getBoundingClientRect().width;
 
-                // Function to remove 'active' class from all slides
                 const removeAllActiveClasses = () => {
                     slides.forEach(slide => {
                         slide.classList.remove('active');
                     });
                 };
 
-                // Function to add 'active' class to a specific slide
                 const setActiveSlide = (index) => {
                     removeAllActiveClasses();
                     slides[index].classList.add('active');
                     updateNavButtons(index);
                 };
 
-                // Update active state of nav buttons
                 const updateNavButtons = (index) => {
                     navButtons.forEach((button, i) => {
                         if (i === index) {
@@ -126,7 +123,6 @@ if(!empty($carousel) && is_array( $carousel )){
                     });
                 };
 
-                // Move to next slide
                 nextButton.addEventListener('click', function () {
                     const currentSlide = track.querySelector('.carousel_cover.active');
                     const currentIndex = slides.findIndex(slide => slide === currentSlide);
@@ -134,7 +130,6 @@ if(!empty($carousel) && is_array( $carousel )){
                     setActiveSlide(nextIndex);
                 });
 
-                // Move to previous slide
                 prevButton.addEventListener('click', function () {
                     const currentSlide = track.querySelector('.carousel_cover.active');
                     const currentIndex = slides.findIndex(slide => slide === currentSlide);
@@ -142,7 +137,6 @@ if(!empty($carousel) && is_array( $carousel )){
                     setActiveSlide(prevIndex);
                 });
 
-                // Move to specific slide on indicator click
                 navButtons.forEach((button, index) => {
                     button.addEventListener('click', () => {
                         setActiveSlide(index);
