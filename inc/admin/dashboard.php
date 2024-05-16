@@ -26,9 +26,6 @@ function fast_admin_menu(){
 
     // Inline related posts
     add_submenu_page( 'fast-dash', 'Inline Related Posts', 'Inline Related Posts', 'manage_options', 'fast-re', 'fast_re' );
-
-    // Cache Panel
-    add_submenu_page( 'fast-dash', 'Cache Page', 'Cache Page', 'manage_options', 'fast-ca', 'fast_ca' );
 }
 
 
@@ -128,22 +125,6 @@ function fast_re(){ ?>
 <?php
 }
 
-function fast_ca(){ ?>
-
-<div class="fast_container">
-    <h1 class="fastHeading">Cache Control</h1>
-    <?php settings_errors() ?>
-
-    <form action="options.php" method="post" class="fast_form">
-        <?php settings_fields( 'fast-settings-cache' ); ?>
-        <?php do_settings_sections( 'fast-ca' ); ?>
-        <?php submit_button('Save Change'); ?>
-    </form>
-</div>
-
-<?php
-}
-
 
 add_action( 'admin_init', 'fast_admin_inits' );
 function fast_admin_inits(){
@@ -153,7 +134,6 @@ function fast_admin_inits(){
     require FAST_DIR . '/inc/admin/handler/seo.php';
     require FAST_DIR . '/inc/admin/handler/color.php';
     require FAST_DIR . '/inc/admin/handler/irp.php';
-    require FAST_DIR . '/inc/admin/handler/cache-panel.php';
 }
 
 

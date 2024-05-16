@@ -12,20 +12,35 @@
 <head>
     <meta charset="<?php echo bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php wp_head(); ?>
 
-    <?php 
+    <?php
+        /**
+         * Inser header HTML
+         * 
+         * @package silohon-fast
+         */
         $htmls = get_option('fast_innseert')['header'];
         if(!empty($htmls)){
             echo $htmls;
         }
-    ?>
 
-    <?php 
-    $color = get_option('color_option');
-    $main = !empty($color['main']) ? $color['main'] : '#e5ac1b';
 
-    echo '<style>:root{--main-color: '. $main .';}</style>';
+        /**
+         * Main Color
+         * 
+         * @package silohon-fast
+         */
+        $color = get_option('color_option');
+        $main = !empty($color['main']) ? $color['main'] : '#e5ac1b';
+
+        echo '<style>:root{--main-color: '. $main .';}</style>';
+
+        /**
+         * Calling wp_head();
+         * 
+         * @package silohon-fast
+         */
+        wp_head();
     ?>
 </head>
 <body <?php body_class(); ?> itemscope itemtype="https://schema.org/Blog">
