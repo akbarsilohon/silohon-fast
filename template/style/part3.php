@@ -31,7 +31,7 @@ $CatUri = get_category_link( $category_id ); ?>
 <section class="fastSection">
     <div class="section_cat">
         <span class="in_single_tag">
-            <a href="<?php echo $CatUri; ?>"><?php echo $CatName; ?></a>
+            <a href="<?php echo $CatUri; ?>" title="<?php echo $CatName; ?>"><?php echo $CatName; ?></a>
         </span>
     </div>
 
