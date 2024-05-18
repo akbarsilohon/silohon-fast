@@ -94,7 +94,7 @@
                     icon: 'icon bx bxl-youtube',
                     onclick: function(){
                         editor.windowManager.open({
-                            title: 'Ease Embed Youtube Video',
+                            title: 'Easy Embed Youtube Video',
                             body: {
                                 type: 'textbox',
                                 name: 'ytID',
@@ -108,6 +108,61 @@
                                 editor.insertContent('<p>[add_youtube videoid="'+yID+'"]</p>');
                             }
                         })
+                    }
+                },
+
+                {
+                    /**
+                     * Related Post in line content
+                     * 
+                     * @package silohon-fast
+                     */
+                    text: 'Custom IRP',
+                    icon: 'icon bx bx-link-alt',
+                    onclick: function(){
+                        editor.windowManager.open({
+                            title: 'Custom Inline Related Post',
+                            body: [
+                                {
+                                    type: 'textbox',
+                                    name: 'irp_id',
+                                    label: 'Post ID',
+                                    minWidth: 380,
+                                    value: '',
+                                },
+
+                                {
+                                    type: 'listbox',
+                                    name: 'irp_rel',
+                                    label: 'Rel',
+                                    maxWidth: 100,
+                                    values: [
+                                        {text: 'Dofollow', value: 'dofollow'},
+                                        {text: 'Nofollow', value: 'nofollow'}
+                                    ]
+                                },
+
+                                {
+                                    type: 'listbox',
+                                    name: 'irp_target',
+                                    label: 'Target',
+                                    maxWidth: 100,
+                                    values: [
+                                        {text: '_self', value: '_self'},
+                                        {text: '_blank', value: '_blank'}
+                                    ]
+                                }
+                            ],
+                            onsubmit: function( e ){
+                                var irpID = e.data.irp_id;
+                                var irpREL = e.data.irp_rel;
+                                var irpTARGET = e.data.irp_target;
+
+                                var irpSUBMIT = '[add_irp id="'+ irpID +'" rel="'+ irpREL +'" target="'+ irpTARGET +'"]';
+
+                                editor.insertContent('<p>'+ irpSUBMIT + '</p>');
+                            }
+                        });
                     }
                 }
             ]

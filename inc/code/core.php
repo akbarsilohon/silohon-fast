@@ -60,7 +60,7 @@ function silohon_fast_faqs_shortcode( $atts, $content = null ){
     $html = '<h2>'. $judul .'</h2>';
     $html .= $intro;
 
-    $html .= '<style>.slsFaqs{margin-bottom:25px}.slsFaqTanya{display:flex;align-items:center;justify-content:space-between;gap:1rem;font-weight:700;padding-bottom:1rem;border-bottom:1px solid var(--main-color);margin-bottom:1rem}.slsFaqTanya .slsQuestion{font-family:"Roboto Slab", serif;font-size:16px;color:#444;line-height:1.5}.slsFaqTanya #faqToggle{background-color:var(--main-color);color:#fff;padding:5px 10px;cursor:pointer;height:max-content}.slsFaqJawab{font-size:18px;line-height:2;color:#444;word-wrap:break-word;margin-bottom:1rem;display:none}@media(max-width:560px){.slsFaqJawab,.slsFaqTanya .slsQuestion{font-size:16px}}</style>';
+    $html .= '<style>.slsFaqs{margin-bottom:25px}.slsFaqTanya{display:flex;align-items:center;justify-content:space-between;gap:1rem;font-weight:700;padding-bottom:1rem;border-bottom:1px solid var(--main-color);margin-bottom:1rem}.slsFaqTanya .slsQuestion{font-family:"Roboto Slab", serif;font-size:16px;color:#444;line-height:1.5}.slsFaqTanya #faqToggle{background-color:var(--main-color);color:#fff;padding:5px 10px;cursor:pointer;height:max-content}.slsFaqJawab{font-size:18px;line-height:2;color:#444;word-wrap:break-word;margin-bottom:1rem;}@media(max-width:560px){.slsFaqJawab,.slsFaqTanya .slsQuestion{font-size:16px}}</style>';
 
     $html .= '<div class="slsFaqs">';
 
@@ -70,7 +70,7 @@ function silohon_fast_faqs_shortcode( $atts, $content = null ){
 
         $html .= '<div class="slsFaqTanya">';
         $html .= '<span class="slsQuestion">'.esc_html( $question ).'</span>';
-        $html .= '<span id="faqToggle">+</span>';
+        $html .= '<span id="faqToggle">-</span>';
         $html .= '</div>';
 
         $html .= '<div class="slsFaqJawab">';
@@ -112,12 +112,12 @@ function silohon_fast_faqs_shortcode( $atts, $content = null ){
                 var toggleButton = event.target;
                 if( toggleButton.id === "faqToggle" ){
                     var answer = toggleButton.parentNode.nextElementSibling;
-                    if( answer.style.display === "block" ){
-                        answer.style.display = "none";
-                        toggleButton.textContent = "+";
-                    } else{
+                    if( answer.style.display === "none" ){
                         answer.style.display = "block";
                         toggleButton.textContent = "-";
+                    } else{
+                        answer.style.display = "none";
+                        toggleButton.textContent = "+";
                     }
                 }
             });
@@ -148,5 +148,56 @@ function silohon_fast_youtube_shortcode( $atts ){
         $shortCodeYt .= '</div>';
 
         return $shortCodeYt;
+    }
+}
+
+
+/**
+ * Related Posts Shortcode
+ * 
+ * @package silohon-fast
+ */
+add_shortcode( 'add_irp', 'silohon_fast_irp_shortcode' );
+function silohon_fast_irp_shortcode( $id ){
+    $id_post = $id['id'];
+    $id_rel = !empty($id['rel']) ? $id['rel'] : 'dofollow';
+    $id_target = !empty( $id['target'] ) ? $id['target'] : '_self';
+    
+    $myOption = get_option('irp_option');
+
+    $irp_button = !empty($myOption['button']) ? $myOption['button'] : 'Read more';
+    $background_color = !empty($myOption['bg']) ? $myOption['bg'] : '#e5ac1b';
+    $button_bg_color = !empty($myOption['button_bg']) ? $myOption['button_bg'] : '#000000';
+    $button_color = !empty($myOption['button_color']) ? $myOption['button_color'] : '#ffffff';
+    $title_color = !empty($myOption['title_color']) ? $myOption['title_color'] : '#000000';
+
+    if( !empty( $id_post )){
+
+        $thumbnailUri = '';
+        if(has_post_thumbnail( $id_post )){
+            $thumbnailUri = get_the_post_thumbnail_url( $id_post, 'medium' );
+            $printImage = '<img src="' . $thumbnailUri . '" alt="' . get_the_title($id_post) . '" loading="lazy" class="re-thumbnail"/>';
+        } else{
+            $getContent = get_post_field('post_content', $id_post);
+            $array_thumbnail = '';
+
+            preg_match('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $getContent, $array_thumbnail);
+            if(!empty($array_thumbnail[1])){
+                $thumbnailUri = esc_url( $array_thumbnail[1] );
+                $printImage = '<img src="' . $thumbnailUri . '" alt="' . get_the_title($id_post) . '" loading="lazy" class="re-thumbnail"/>';
+            } else{
+                $printImage = '<div class="re-thumbnail"></div>';
+            }
+        }
+
+        $irp_output = '<a href="'. get_the_permalink( $id_post ) .'" title="'. get_the_title( $id_post ) .'" target="'. $id_target .'" rel="'. $id_rel .'" class="silohon-irp" style="background-color: '. $background_color .';border-left: 4px solid '. $button_bg_color .';">';
+        $irp_output .= '<div class="irp-relative">';
+        $irp_output .= '<span class="irp-button" style="background-color: '. $button_bg_color .'; color: '. $button_color .';">'. esc_attr($irp_button) .'</span>';
+        $irp_output .= '<p class="irp-title" style="color: '. $title_color .';">'. esc_attr(get_the_title($id_post)) .'</p>';
+        $irp_output .= '</div>';
+        $irp_output .= $printImage;
+        $irp_output .= '</a>';
+
+        return $irp_output;
     }
 }
