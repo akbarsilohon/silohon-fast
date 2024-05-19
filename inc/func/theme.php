@@ -250,3 +250,19 @@ if(!empty($lazy) && $lazy === 'true' && ! is_admin()){
         return $atts;
     }
 }
+
+
+/**
+ * Update Post View in Single posts
+ * 
+ * @package silohon-fast
+ */
+function silohon_save_post_veiws( $postID ){
+    $metaKey = 'silohon_post_views';
+    $views = get_post_meta( $postID, $metaKey, true );
+    $count = ( empty( $views ) ? 0 : $views );
+    $count++;
+
+    update_post_meta( $postID, $metaKey, $count );
+}
+remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );

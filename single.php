@@ -11,6 +11,8 @@
 
 get_header();
 
+silohon_save_post_veiws( get_the_ID() );
+
 $option = get_option('fast_article');
 
 ?>
@@ -81,6 +83,23 @@ $option = get_option('fast_article');
         if(!empty( $related ) && $related === 'true' ){
             FAST_PART('aside/related');
         } ?>
+
+        <?php 
+            /**
+             * Get Popular Posts
+             * 
+             * @package silohon-fast
+             */
+            FAST_PART('aside/popular-post');
+            
+
+            /**
+             * Get Recent Posts
+             * 
+             * @package silohon-fast
+             */
+            FAST_PART('aside/recent-post');
+        ?>
 
         <?php
         /**
