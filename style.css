@@ -1,6 +1,6 @@
 /* =========================================
 * Theme Name: SILOHON FAST
-* Version: 2.0.0
+* Version: 2.0.1
 * Theme URI: https://github.com/akbarsilohon/silohon-fast.git
 * Author: Nur Akbar
 * Author URI: https://github.com/akbarsilohon
@@ -521,16 +521,16 @@ a{
     border-radius: 10px;
 }
 .authorAbsolute{
-    position: absolute;
-    top: 0;
-    right: 0;
     background-color: var(--main-color);
     color: white;
-    font-size: 13px;
+    font-size: 12px;
     font-family: 'Roboto Slab', serif;
-    font-weight: 600;
-    padding: 5px 10px;
-    border-top-right-radius: 10px;
+    font-weight: 400;
+    padding: 5px 8px;
+    border-radius: 5px;
+    display: block;
+    width: max-content;
+    margin-top: 10px;
 }
 .smallTitle_absolute{
     font-size: 17px;
@@ -962,6 +962,9 @@ tbody tr td:nth-child(1){
     }
     .fastPosts{
         margin-top: 1rem;
+    }
+    .smallRelative{
+        height: 220px;
     }
     .bodyAbsolute{
         left: 20px;

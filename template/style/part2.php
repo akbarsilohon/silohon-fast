@@ -49,8 +49,8 @@ $CatUri = get_category_link( $category_id ); ?>
                         <?php echo fast_generate_thumbnail(get_the_ID(), 'full', 'smallAbsolute', 'lazy'); ?>
                         <div class="smallBody_absolute">
                             <?php the_title('<h2 class="smallTitle_absolute">', '</h2>') ?>
+                            <span class="authorAbsolute">By <?php the_author(); ?></span>
                         </div>
-                        <span class="authorAbsolute">By <?php the_author(); ?></span>
                     </a>
 
                     <?php
