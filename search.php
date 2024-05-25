@@ -23,7 +23,7 @@ get_header(); ?>
                 <article id="post-<?php the_ID() ?>" class="dblock">
                     <div class="grid-2-250">
                         <a href="<?php echo the_permalink(); ?>" title="<?php echo the_title(); ?>" class="fastSmall">
-                            <?php echo fast_generate_thumbnail(get_the_ID(), 'medium', 'mediumThumbnmail', 'lazy'); ?>
+                            <?php echo fast_generate_thumbnail(get_the_ID(), 'full', 'mediumThumbnmail', 'lazy'); ?>
                         </a>
                         <div class="bodyBlock">
                             <div class="meta">

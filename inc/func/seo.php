@@ -11,9 +11,6 @@ function fast_generate_img_meta_seo($id){
     $printImg = null;
 
     if(has_post_thumbnail( $id )){
-        $printImg .= '<meta itemprop="image" content="'. get_the_post_thumbnail_url( $id, 'thumbnail' ) .'" />';
-        $printImg .= '<meta itemprop="image" content="'. get_the_post_thumbnail_url( $id, 'medium' ) .'" />';
-        $printImg .= '<meta itemprop="image" content="'. get_the_post_thumbnail_url( $id, 'large' ) .'" />';
         $printImg .= '<meta itemprop="image" content="'. get_the_post_thumbnail_url( $id, 'full' ) .'" />';
     } else{
         $getContent = get_the_content( null, false, $id );

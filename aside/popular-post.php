@@ -37,7 +37,7 @@ if( $popular->have_posts()){ ?>
 
             <article id="post-<?php the_ID() ?>" class="g90-auto">
                 <a href="<?php echo the_permalink(); ?>" title="<?php echo the_title(); ?>" class="smallUri">
-                    <?php echo fast_generate_thumbnail(get_the_ID(), 'medium', 'thumSmall', 'lazy'); ?>
+                    <?php echo fast_generate_thumbnail(get_the_ID(), 'full', 'thumSmall', 'lazy'); ?>
                 </a>
                 <div class="smallBody">
                     <div class="meta">
